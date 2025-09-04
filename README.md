@@ -1,2 +1,2 @@
-# workshop1
-ws01 javascript-kurssi
+# js kurssi
+javascript-kurssin workshopit
