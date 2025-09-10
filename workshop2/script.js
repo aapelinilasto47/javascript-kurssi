@@ -13,12 +13,11 @@ function printQuote() {
     }
 }
 
-printQuote();
 
 const body = document.body;
 
 body.append("Hello World!");
 
-const newDiv = document.createElement("p");
-newDiv.textContent = "This is a new paragraph added with createElement and textContent.";
-body.appendChild(newDiv);
+const newP = document.createElement("p");
+newP.textContent = "This is a new paragraph added with createElement and textContent.";
+body.appendChild(newP);
