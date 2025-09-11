@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't press A</title>
+</head>
+<body>
+    <h1>Don't press A</h1>
+    
+
+    <form>
+        <textarea id="textdata" onfocus="showHint()" onkeydown="countKeys(), presentKeys(event)" rows="10" cols="30"></textarea>
+        <br>
+        <button id="submit">Submit</button>
+    </form>
+
+    
+    <div id="keycount">Keypresses: 0</div>
+
+    <script src="script.js"></script>
+
+    
+</body>
+</html>
