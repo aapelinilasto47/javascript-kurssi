@@ -108,3 +108,24 @@ function remove() {
     const car = document.getElementById('carimage');
     car.remove();
 }
+
+function insertRows() {
+
+    const table = document.getElementById('data');
+
+    const value1 = document.getElementById('textfield').value;
+    const value2 = document.getElementById('textfield2').value;
+    const value3 = document.getElementById('textfield3').value;
+
+
+    const newRow = table.insertRow(-1);
+
+    const cell1 = newRow.insertCell(0);
+    cell1.innerHTML = value1;
+    const cell2 = newRow.insertCell(1);
+    cell2.innerHTML = value2;
+    const cell3 = newRow.insertCell(2);
+    cell3.innerHTML = value3;
+
+
+}
