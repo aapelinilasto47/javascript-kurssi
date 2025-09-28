@@ -9,10 +9,12 @@
 </head>
 <body>
     <header>
-        <h1>My Notes</h1>
+        <h1>Muistiinpanot</h1>
         <div>
-            <button id="add-note-btn" onclick="openNoteDialog()">Add Note</button>
-            <button id="clear-notes-btn" onclick="clearNotes()">Clear All Notes</button>
+            <button id="add-note-btn" onclick="openNoteDialog()">Lisää muistiinpano</button>
+            <button id="clear-notes-btn" onclick="clearNotes()">Tyhjennä kaikki muistiinpanot</button>
+            <button id="surprise-btn" onclick="showSurprise()">Yllätys</button>
+
 
         </div>
     </header>
@@ -23,26 +25,26 @@
     <dialog id="noteDialog">
         <div class="dialog-content">
             <div class="dialog-header">
-                <button class="close-btn" onclick="closeNoteDialog()">x</button>
-                <h2 class="dialog-title" id="dialogTitle">Add Note</h2>
+                <button class="close-btn" onclick="closeNoteDialog()">X</button>
+                <h2 class="dialog-title" id="dialogTitle">Lisää muistiinpano</h2>
                 
                 
             </div>
             <form id="noteForm">
                 <div class="form-group">
-                    <label for="noteTitle" class="form-label">Title</label>
-                    <input type="text" id="noteTitle" class="form-input" placeholder="Enter note title..." required>
+                    <label for="noteTitle" class="form-label">Otsikko</label>
+                    <input type="text" id="noteTitle" class="form-input" placeholder="Syötä muistiinpanon otsikko..." required>
                 </div>
                 <br> <br>
                 <div class="form-group">
-                    <label for="noteContent" class="form-label">Content</label>
-                    <textarea id="noteContent" class="form-textarea" placeholder="Enter note content..." required></textarea>
+                    <label for="noteContent" class="form-label">Sisältö</label>
+                    <textarea id="noteContent" class="form-textarea" placeholder="Syötä muistiinpanon sisältö..." required></textarea>
 
                 </div>
                 <br>
                 <div class="dialog-actions">
-                    <button type="button" class="cancel-btn" onclick="closeNoteDialog()">Cancel</button>
-                    <button type="submit" class="save-btn">Save</button>
+                    <button type="button" class="cancel-btn" onclick="closeNoteDialog()">Peruuta</button>
+                    <button type="submit" class="save-btn">Tallenna</button>
                 </div>
             </form>
         </div>

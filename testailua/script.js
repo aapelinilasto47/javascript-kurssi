@@ -2,8 +2,17 @@ let notes = [];
 
 let editingNoteId = null;
 
+
+
+function showSurprise() {
+    document.body.style.backgroundImage = "url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXR2cnE2dW1nZXh6Zncza3Z5b2g3dHRyMWpxMGhjbHpmbHBnbmsyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3orifhETYHxDcfpFHa/giphy.gif')";
+    document.body.style.backgroundSize = "cover";
+    alert("Yllätys! Taustalla on GIF-animaatio minusta, kun koodini ei toimi.");
+}
+
+
 function clearNotes() {
-    if (confirm("Are you sure you want to clear all notes?")) {
+    if (confirm("Haluatko varmasti tyhjentää kaikki muistiinpanot?")) {
         notes = [];
         saveNotes();
         renderNotes();
@@ -64,14 +73,14 @@ function renderNotes() {
     const notesContainer = document.getElementById('notesContainer');
 
     if(notes.length === 0) {
-        notesContainer.innerHTML = '<p style="text-align: center;">No notes available. Click "Add Note" to create one.</p><br>';
+        notesContainer.innerHTML = '<p style="text-align: center;">Ei muistiinpanoja saatavilla. Klikkaa "Lisää muistiinpano" luodaksesi uuden.</p><br>';
         return;
     }
 
     
 
     notesContainer.innerHTML = notes.map(note => `
-        <div class="note-card"><button class="edit-btn" onclick="openNoteDialog('${note.id}')">✏️</button><button class="close-btn" onclick="deleteNote('${note.id}')">🗑️</button><h3 class="note-title">${note.title}</h3><p class="note-content">${note.content}</p></div>`).join('');
+        <div class="note-card"><button class="edit-btn" onclick="openNoteDialog('${note.id}')">✏️</button><button class="close-btn" onclick="deleteNote('${note.id}')">X</button><h3 class="note-title">${note.title}</h3><p class="note-content">${note.content}</p></div>`).join('');
 }
 
 function openNoteDialog(noteId) {
@@ -83,7 +92,7 @@ function openNoteDialog(noteId) {
         // Edit existing note
         const noteToEdit = notes.find(note => note.id === noteId);
         editingNoteId = noteId;
-        document.getElementById("dialogTitle").textContent = "Edit Note";
+        document.getElementById("dialogTitle").textContent = "Muokkaa muistiinpanoa";
         titleInput.value = noteToEdit.title;
         contentInput.value = noteToEdit.content;
 
@@ -91,7 +100,7 @@ function openNoteDialog(noteId) {
     } else {
         // New note
         editingNoteId = null;
-        document.getElementById("dialogTitle").textContent = "Add Note";
+        document.getElementById("dialogTitle").textContent = "Lisää muistiinpano";
         titleInput.value = '';
         contentInput.value = '';
 

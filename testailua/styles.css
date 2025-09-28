@@ -8,11 +8,20 @@ body {
 }
 
 header {
-    background-color: #484491;
+    
     color: white;
     padding: 10px 0;
     text-align: center;
     margin-bottom: 20px;
+
+    animation: headerAnimation 8s infinite alternate;
+
+}
+
+@keyframes headerAnimation {
+    0% { background-color: rgb(66, 140, 183); }
+    50% { background-color: rgb(100, 54, 207); }
+    100% { background-color: rgb(152, 38, 170); }
 }
 
 .note-card {
