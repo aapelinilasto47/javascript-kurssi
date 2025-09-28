@@ -20,7 +20,7 @@ function saveNote(event) {
     const title = document.getElementById('noteTitle').value.trim();
     const content = document.getElementById('noteContent').value.trim();
 
-    notes.unshift({
+    notes.push({
         id: generateId(),
         title: title,
         content: content
