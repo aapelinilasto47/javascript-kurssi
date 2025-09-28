@@ -3,8 +3,6 @@ body {
     background-color: #ffffff;
     color: #333;
     
-
-    
     
 
 }
@@ -102,4 +100,14 @@ form {
     display: block;
     padding: 10px;
     border: 1px solid #ccc;
+}
+
+.close-btn {
+    background-color: #f44336;
+    color: white;
+    float: right;
+}
+
+.close-btn:hover {
+    background-color: #d32f2f;
 }

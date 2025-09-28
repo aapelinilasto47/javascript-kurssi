@@ -1,5 +1,7 @@
 let notes = [];
 
+let editingNoteId = null;
+
 function clearNotes() {
     if (confirm("Are you sure you want to clear all notes?")) {
         notes = [];
@@ -20,19 +22,37 @@ function saveNote(event) {
     const title = document.getElementById('noteTitle').value.trim();
     const content = document.getElementById('noteContent').value.trim();
 
-    notes.push({
+
+    if(editingNoteId) {
+        const noteIndex = notes.findIndex(note => note.id === editingNoteId);
+        notes[noteIndex] = {
+            ...notes[noteIndex],
+            title: title,
+            content: content
+        };
+    }
+    else{
+        notes.push({
         id: generateId(),
         title: title,
         content: content
     })
+    }  
 
     saveNotes()
+    renderNotes()
 }
 
 function generateId() {
     return Date.now().toString();
 }
 
+
+function deleteNote(id) {
+    notes = notes.filter(note => note.id !== id);
+    saveNotes();
+    renderNotes();
+}
 
 
 function saveNotes() {
@@ -51,14 +71,33 @@ function renderNotes() {
     
 
     notesContainer.innerHTML = notes.map(note => `
-        <div class="note-card"><h3 class="note-title">${note.title}</h3><p class="note-content">${note.content}</p></div>`).join('');
+        <div class="note-card"><button class="edit-btn" onclick="openNoteDialog('${note.id}')">✏️</button><button class="close-btn" onclick="deleteNote('${note.id}')">🗑️</button><h3 class="note-title">${note.title}</h3><p class="note-content">${note.content}</p></div>`).join('');
 }
 
-function openNoteDialog() {
+function openNoteDialog(noteId) {
     const dialog = document.getElementById('noteDialog');
     const titleInput = document.getElementById('noteTitle');
     const contentInput = document.getElementById('noteContent');
     
+    if (noteId) {
+        // Edit existing note
+        const noteToEdit = notes.find(note => note.id === noteId);
+        editingNoteId = noteId;
+        document.getElementById("dialogTitle").textContent = "Edit Note";
+        titleInput.value = noteToEdit.title;
+        contentInput.value = noteToEdit.content;
+
+
+    } else {
+        // New note
+        editingNoteId = null;
+        document.getElementById("dialogTitle").textContent = "Add Note";
+        titleInput.value = '';
+        contentInput.value = '';
+
+
+    }
+
     dialog.showModal()
     titleInput.focus()
 
@@ -90,3 +129,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     });
+
