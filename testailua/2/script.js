@@ -56,26 +56,40 @@ const questions = [
 
 
 const form = document.getElementById('trivia-form');
-
 const questionContainer = document.getElementById('question-container');
 
-const questionElement = document.getElementById('question');
+function displayQuestion() {
+    const questionEl = document.getElementById('question');
+    const optionsEl = document.getElementById('options-container');
+    const nextButton = document.getElementById('next-button');
 
-function loadQuestion() {
-    const currentQuestion = questions[0];
-    questionElement.innerHTML = `
-        <h2>${currentQuestion.question}</h2>
-        <ul>
-            ${currentQuestion.options.map((option, index) => `
-                <li>
-                    <input type="radio" name="answer" value="${index}" id="option${index}">
-                    <label for="option${index}">${option}</label>
-                </li>
-            `).join('')}
-        </ul>
-    `;
+    // Otetaan ensimmäinen kysymys taulukosta
+    const current = questions[0];
+
+    // Näytetään kysymys
+    questionEl.textContent = current.question;
+
+    // Tyhjennetään mahdolliset vanhat napit
+    optionsEl.innerHTML = '';
+
+    
+    // Luodaan vastausvaihtoehdot nappeina
+    current.options.forEach((option, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = option;
+        btn.addEventListener('click', () => {
+            if (i === current.answer) {
+                alert('Oikein!');
+            } else {
+                alert('Väärin!');
+            }
+        });
+        optionsEl.appendChild(btn);
+    });
+
+    // Näytetään "Seuraava kysymys" -nappi (voit laajentaa tätä myöhemmin)
+    nextButton.style.display = 'block';
 }
-
 
 form.addEventListener('submit', function(event) {
     if (!form.checkValidity()) {
@@ -90,8 +104,9 @@ form.addEventListener('submit', function(event) {
         event.preventDefault(); // Estä lomakkeen oletuslähetys
         form.style.display = 'none'; // Piilota lomake
 
-        questionContainer.style.display = 'block'; // Näytä kysymysalue
-        loadQuestion(); // Lataa ensimmäinen kysymys
+        // Näytä kysymys ja vastausvaihtoehdot
+        questionContainer.style.display = 'block';
+        displayQuestion();
     }
 });
 
