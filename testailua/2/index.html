@@ -9,11 +9,44 @@
 </head>
 <body>
 
-    <form id="form" action="#" method="post">
-        <input type="text" id="name" placeholder="Name">
-        <input type="email" id="email" placeholder="Email">
-        <button type="submit">Submit</button>
+    <h1>Tervetuloa Trivia-peliin!</h1>
+
+    <form id="trivia-form">
+        <div id="name-container">
+            <label for="name">Nimi:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <br>
+
+        <div id="age-container">
+            <label for="age">Ikä:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+
+        <br>
+        <div id="difficulty-container">
+            <label for="difficulty">Vaikeustaso:</label>
+            <select id="difficulty" name="difficulty" required>
+            <option value="easy">Helppo</option>
+            <option value="medium">Keskitaso</option>
+            <option value="hard">Vaikea</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Aloita peli</button>
+
     </form>
+
+    <div id="question-container" style="display: none;">
+        <form id="trivia-quiz-form">
+            <div id="question"></div>
+            <div id="answers"></div>
+        </form>
+        
+        <button id="next-button" style="display: none;">Seuraava kysymys</button>
+
+    </div>
 
 </body>
 </html>
