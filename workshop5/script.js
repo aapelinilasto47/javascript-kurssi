@@ -129,13 +129,45 @@ function calculate(){
     let price = document.querySelector("#price");
     let tax = document.querySelector("#tax");
     let discount = document.querySelector("#discount");
+    let shipping = document.querySelector("#shipping");
     let total = document.querySelector("#total");
 
-    let basePrice = quantity.value * price.value;
-    let taxAmount = basePrice * (tax.value / 100);
+    let basePrice = quantity.value * parseFloat(price.value);
+    let taxAmount = basePrice * (parseFloat(tax.value) / 100);
     let totalPriceBeforeDiscount = basePrice + taxAmount;
-    let discountAmount = totalPriceBeforeDiscount * (discount.value / 100);
-    let totalPrice = totalPriceBeforeDiscount - discountAmount;
+    discountValue = parseFloat(discount.value);
+    if (quantity.value > 100) {
+        discountValue *=  2; // Double the discount if more than 100 items
+        alert("You received a discount for ordering more than 100 items!");
+    }
+
+    let discountAmount = totalPriceBeforeDiscount * (discountValue / 100);
+    let totalPriceBeforeShipping = totalPriceBeforeDiscount - discountAmount;
+    let totalPrice = totalPriceBeforeShipping + parseFloat(shipping.value);
+
 
     total.value = totalPrice.toFixed(2);
+}
+
+function updateContactFields() {
+    let contactMethod = document.querySelector("#contactMethod");
+    let selectedMethod = contactMethod.value;
+
+    let emailAddress = document.querySelector("#emailAddress");
+    let phoneNumber = document.querySelector("#phoneNumber");
+    let mailingAddress = document.querySelector("#mailingAddress");
+
+    if (selectedMethod === "email") {
+        emailAddress.style.display = "block";
+        phoneNumber.style.display = "none";
+        mailingAddress.style.display = "none";
+    } else if (selectedMethod === "phone") {
+        phoneNumber.style.display = "block";
+        emailAddress.style.display = "none";
+        mailingAddress.style.display = "none";
+    } else if (selectedMethod === "mail") {
+        mailingAddress.style.display = "block";
+        emailAddress.style.display = "none";
+        phoneNumber.style.display = "none";
+    }
 }

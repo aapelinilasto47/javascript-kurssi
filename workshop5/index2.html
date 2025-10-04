@@ -55,14 +55,42 @@
 
     <div><label for="tax">VAT (%)</label> <input type="float" name="tax" id="tax" value="0.0" required=""></div>
 
-    <div><label for="discount">Discount</label> <input type="float" name="discount" id="discount" value="0.00" required=""></div>
+    <div><label for="discount">Discount (%)</label> <input type="float" name="discount" id="discount" value="0.00" required=""></div>
+
+    <div><label for="shipping">Shipping</label> <input type="float" name="shipping" id="shipping" value="0.00" required=""></div>
 
     <div><label for="total">Total</label> <input type="float" name="total" id="total" value="0.00"></div>
+
 
     <div><input type="submit" value="Calculate" id="submit-calculate" onclick="calculate()"></div>
 
     </fieldset>
 
-    
+    <form onsubmit="updateContactFields(); return false;">
+    <div class="no-border">
+        <label>Select preferred contact method:</label>
+        <select name="contactMethod" id="contactMethod">
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+            <option value="mail">Mail</option>
+        </select>
+    </div>
+    <input type="submit" value="Send" id="submitContact">
+    <div class="no-border" style="display: none;" id="emailAddress">
+        <label for="emailAddress">Email Address:<br>
+            <input type="text" name="emailAddress" id="emailAddress">
+        </label>
+    </div>
+    <div class="no-border" style="display: none;" id="phoneNumber">
+        <label for="phoneNumber">Phone Number:<br>
+            <input type="text" name="phoneNumber" id="phoneNumber">
+        </label>
+    </div>
+    <div class="no-border" style="display: none;" id="mailingAddress">
+        <label for="mailingAddress">Mailing Address:<br>
+            <input type="text" name="mailingAddress" id="mailingAddress">
+        </label>
+
+</form>
 </body>
 </html>
