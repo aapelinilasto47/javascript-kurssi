@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="scriptaus.js" defer></script>
+        <link rel="stylesheet" href="styles.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- Trivia-pelin HTML-rakenne -->
+        <h1 id="game-title">Tervetuloa Trivia-peliin!</h1>
+        <!-- Käyttäjänimi -->
+        <form id="trivia-form">
+            <div id="name-container">
+                <label for="name">Käyttäjänimi:</label>
+                <input type="text" id="name" name="name" autocomplete="off" required>
+            </div>
+            <br>
+            <!-- Sähköposti -->
+            <div id="email-container">
+                <label for="email">Sähköposti:</label>
+                <input type="email" id="email" name="email" autocomplete="on" required>
+            </div>
+            <br>
+            <!-- Vaikeustaso -->
+            <div id="difficulty-container">
+                <label for="difficulty">Vaikeustaso:</label>
+                <select id="difficulty" name="difficulty" required>
+                <option value="easy">Helppo</option>
+                <option value="medium">Keskitaso</option>
+                <option value="hard">Vaikea</option>
+                </select>
+            </div>
+
+            <br><br>
+            <!-- Aloita peli nappi -->
+            <button type="submit">Aloita peli</button>
+
+        </form>
+
+
+        <div id="question-container" style="display: none;">
+            <h2 id="question-title"></h2>
+            <!-- Kysymykset tulevat tähän -->
+            <select id="answer-select">
+                <option value="">Valitse vastaus</option>
+            </select>
+            <br><br>
+            <button id="submit-answer">Vahvista vastaus</button>
+            <br><br>
+
+            <h4 id="score-display">Pisteet: 0</h4>
+        </div>
+
+        <div id="leaderboard-container" style="display: none;">
+            <h2>TOP 5 pelaajat</h2>
+            <ol id="leaderboard-list">
+                <!-- Parhaat pelaajat tulevat tähän -->
+            </ol>
+        </div>
+    </body>
+</html>
