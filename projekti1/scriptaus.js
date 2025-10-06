@@ -92,11 +92,10 @@ form1.addEventListener('submit', function(event) {
         // Tallenna käyttäjän tiedot paikalliseen tallennustilaan
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
-        const difficulty = document.getElementById('difficulty').value;
 
         localStorage.setItem('name', name);
         localStorage.setItem('email', email);
-        localStorage.setItem('difficulty', difficulty);
+        
         
         form1.style.display = 'none'; // Piilota lomake
         gameTitle.style.display = 'none'; // Piilota otsikko
@@ -145,6 +144,8 @@ function runQuestions(){
         // Hae valittu vastaus ja muunna se numeroksi
         const answerSelect = document.getElementById('answer-select');
         const selectedAnswer = parseInt(answerSelect.value);
+        submitAnswerButton.disabled = true; // Estä useat klikkaukset
+        
         // Tarkista, onko vastaus oikein
         if (selectedAnswer === questions[currentQuestionIndex].correct) {
             score++;
@@ -157,15 +158,17 @@ function runQuestions(){
             document.body.appendChild(feedbackText);
             setTimeout(() => {
                 feedbackText.remove();
+                submitAnswerButton.disabled = false; // Salli vastaaminen uudelleen
             }, 2000); // Poista palaute 2 sekunnin kuluttua
         }
         else {
             feedbackText = document.createElement('div');
-            feedbackText.textContent = `Väärin! Oikea vastaus on: ${questions[currentQuestionIndex].answers[questions[currentQuestionIndex].correct]}`; // Ilmoita väärästä vastauksesta
+            feedbackText.textContent = `Väärin!`; // Ilmoita väärästä vastauksesta
             feedbackText.style.color = 'red';
             document.body.appendChild(feedbackText);
             setTimeout(() => {
                 feedbackText.remove();
+                submitAnswerButton.disabled = false; // Salli vastaaminen uudelleen
             }, 2000); // Poista palaute 2 sekunnin kuluttua
         }
         // Siirry seuraavaan kysymykseen
@@ -174,12 +177,13 @@ function runQuestions(){
         if (currentQuestionIndex < questions.length) {
             setTimeout(() => {
                 showQuestion();
-            }, 2000); // Pieni viive ennen seuraavaa kysymystä
+                
+            }, 1000); // Pieni viive ennen seuraavaa kysymystä
         } else {
 
             setTimeout(() => {
                 showResults();
-            }, 2000); // Pieni viive ennen tulosten näyttämistä
+            }, 1000); // Pieni viive ennen tulosten näyttämistä
         }
     });
     // Funktio, joka näyttää pelin tulokset
@@ -206,11 +210,11 @@ function runQuestions(){
 
         name1 = localStorage.getItem('name');
         email1 = localStorage.getItem('email');
-        difficulty1 = localStorage.getItem('difficulty');
+        
 
         localStorage.removeItem('name');
         localStorage.removeItem('email');
-        localStorage.removeItem('difficulty');
+        
 
         // jos nimeä ei ole listassa, lisätään se, tai jos pisteet ovat paremmat, päivitetään ne
         leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || {};
@@ -218,7 +222,6 @@ function runQuestions(){
         if (!(name1 in leaderboard) || (leaderboard[name1].score < score)) {
             leaderboard[name1] = {
                 email: email1,
-                difficulty: difficulty1,
                 score: score
             };
         }
@@ -244,7 +247,7 @@ function runQuestions(){
         // Lisää tulokset listaan
         Object.entries(leaderboard).forEach(([name, data]) => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${name} - ${data.email} - ${data.difficulty} - ${data.score}`;
+            listItem.textContent = `${name} - ${data.score}`;
             leaderboardList.appendChild(listItem);
         });
 
