@@ -194,7 +194,7 @@ function runQuestions(){
         // Näytä tulokset ja anna mahdollisuus aloittaa alusta
         const resultsContainer = document.createElement('div');
         resultsContainer.id = 'results-container';
-        resultsContainer.innerHTML = `<h2>Pelitulokset</h2><p>Oikein vastatut kysymykset: ${score} / ${questions.length}</p>`;
+        resultsContainer.innerHTML = `<br><h2>Pelitulokset</h2><p>Oikein vastatut kysymykset: ${score} / ${questions.length}</p>`;
         document.body.appendChild(resultsContainer);
         const restartButton = document.createElement('button');
         restartButton.textContent = 'Aloita alusta';
