@@ -152,22 +152,21 @@ function runQuestions(){
             // Päivitä pistemäärä näytölle
             const scoreDisplay = document.getElementById('score-display');
             scoreDisplay.textContent = `Pisteet: ${score}`;
-            feedbackText = document.createElement('div');
+            feedbackText = document.getElementById('feedback-container');
             feedbackText.textContent = 'Oikein!'; // Ilmoita oikeasta vastauksesta
             feedbackText.style.color = 'green';
-            document.body.appendChild(feedbackText);
             setTimeout(() => {
-                feedbackText.remove();
+                feedbackText.innerHTML = '<br>'; // Tyhjennä palaute
                 submitAnswerButton.disabled = false; // Salli vastaaminen uudelleen
             }, 2000); // Poista palaute 2 sekunnin kuluttua
         }
         else {
-            feedbackText = document.createElement('div');
+            feedbackText = document.getElementById('feedback-container');
             feedbackText.textContent = `Väärin!`; // Ilmoita väärästä vastauksesta
             feedbackText.style.color = 'red';
-            document.body.appendChild(feedbackText);
+            
             setTimeout(() => {
-                feedbackText.remove();
+                feedbackText.innerHTML = '<br>'; // Tyhjennä palaute
                 submitAnswerButton.disabled = false; // Salli vastaaminen uudelleen
             }, 2000); // Poista palaute 2 sekunnin kuluttua
         }
@@ -192,13 +191,15 @@ function runQuestions(){
         questionContainer.style.display = 'none'; // Piilota kysymysalue
 
         // Näytä tulokset ja anna mahdollisuus aloittaa alusta
-        const resultsContainer = document.createElement('div');
-        resultsContainer.id = 'results-container';
+        const resultsContainer = document.getElementById('results-container');
+        resultsContainer.style.display = 'block';
         resultsContainer.innerHTML = `<br><h2>Pelitulokset</h2><p>Oikein vastatut kysymykset: ${score} / ${questions.length}</p>`;
-        document.body.appendChild(resultsContainer);
         const restartButton = document.createElement('button');
         restartButton.textContent = 'Aloita alusta';
-        document.body.appendChild(restartButton);
+        resultsContainer.appendChild(restartButton);
+        resultsContainer.style.marginBottom = '20px';
+
+        // Lisää tapahtumankuuntelija uudelleenkäynnistyspainikkeelle
 
         restartButton.addEventListener('click', function() {
             location.reload(); // Lataa sivu uudelleen
@@ -206,7 +207,7 @@ function runQuestions(){
 
         
 
-        // Tallenna tulokset paikalliseen tallennustilaan
+        // Haetaan käyttäjän tiedot paikallisesta tallennustilasta
 
         name1 = localStorage.getItem('name');
         email1 = localStorage.getItem('email');
