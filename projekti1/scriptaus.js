@@ -176,7 +176,6 @@ function runQuestions(){
         if (currentQuestionIndex < questions.length) {
             setTimeout(() => {
                 showQuestion();
-                
             }, 1000); // Pieni viive ennen seuraavaa kysymystä
         } else {
 
