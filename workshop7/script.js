@@ -84,3 +84,27 @@ function loadAndParseXML() {
         })
         .catch(error => console.error('Error fetching JSON:', error));
 }
+
+
+// Cors policy blokkasi sekä iltalehden että alkuperäisen yahoo feedin
+
+function loadAndParseNews() {
+    const parser = new DOMParser();
+    console.log("loadAndParseNews called");
+    fetch("https://meijastiina.github.io/news_rss_topstories.xml")
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            const xmlDoc = parser.parseFromString(data, "text/xml");
+            const items = xmlDoc.getElementsByTagName("item");
+
+            for (let item of items) {
+                const title = item.getElementsByTagName("title")[0].textContent;
+                const link = item.getElementsByTagName("link")[0].textContent;
+                
+                
+                document.querySelector("#newslist").innerHTML += `<li><a href="${link}" target="_blank">${title}</a></li>`;
+            }
+        })
+        .catch(error => console.error('Error fetching news:', error));
+}
