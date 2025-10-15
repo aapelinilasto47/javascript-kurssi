@@ -48,11 +48,10 @@ function loadXMLFile() {
 
 */
 
-function loadJSONFile(x) {
+function loadJSONFile() {
     let quoteText = "";
     let quoteAuthor = "";
     console.log("loadJSONFile called");
-    console.log(x);
     // Sori, oli ongelmia XML tiedoston kanssa, joten tein JSON version
     fetch('https://thequoteshub.com/api/')
         .then(response => response.json())
@@ -97,12 +96,13 @@ function loadAndParseNews() {
             console.log(data);
             const xmlDoc = parser.parseFromString(data, "text/xml");
             const items = xmlDoc.getElementsByTagName("item");
+            const newsList = document.querySelector("#newslist").innerHTML = "";
 
-            for (let item of items) {
-                const title = item.getElementsByTagName("title")[0].textContent;
-                const link = item.getElementsByTagName("link")[0].textContent;
-                
-                
+            for (i=0; i<20; i++) {
+                const title = items[i].getElementsByTagName("title")[0].textContent;
+                const link = items[i].getElementsByTagName("link")[0].textContent;
+
+
                 document.querySelector("#newslist").innerHTML += `<li><a href="${link}" target="_blank">${title}</a></li>`;
             }
         })
