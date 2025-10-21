@@ -38,10 +38,7 @@ function showData() {
             } else {
                 p.textContent = allProducts[i - 1].title;
             }
-            const link = document.createElement("a");
-            link.href = "product.html?id=" + allProducts[i - 1].id;
-            link.appendChild(p);
-            titleContainer.appendChild(link);
+            titleContainer.appendChild(p);
 
             priceContainer = document.createElement("div");
             priceContainer.className = "price-container";
@@ -58,6 +55,13 @@ function showData() {
             button.className = "add-to-cart";
             button.textContent = "Add to Cart";
             buttonContainer.appendChild(button);
+
+            const button2 = document.createElement("button");
+            button2.className = "view-details";
+            button2.textContent = "View Details";
+            buttonContainer.appendChild(button2);
+
+            
         }
     });
 }

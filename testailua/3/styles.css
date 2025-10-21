@@ -2,9 +2,35 @@ body {
     
     background-color: #f0f0f0;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    overflow-x: hidden;
 }
 
+#footer-text {
+    text-align: center;
+    padding: 20px;
+    background-color: #4155a5;
+    color: white;
+    
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
+.front-container {
+    width: 100%;
+    height: 400px;
+    margin: 0;
+    
+    padding-top: 100px;
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60');
+    background-size: cover;
+    
+}
+h1 {
+    color: #4155a5;
+    font-size: 80px;
+    text-align: center;
+}
 .product-info {
     font-size: 18px;
     color: #333;
@@ -16,14 +42,24 @@ body {
     
 }
 
-button {
+.add-to-cart {
     background-color: #4155a5;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
+    padding: 10px 15px;
     cursor: pointer;
-    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.view-details {
+    background-color: #4f4f4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 #result {
@@ -84,4 +120,10 @@ button {
     width: 150px;
     margin-top: 10px;
     text-align: center;
+}
+
+.button-container {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
 }
