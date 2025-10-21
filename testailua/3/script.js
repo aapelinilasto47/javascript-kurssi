@@ -1,13 +1,10 @@
 
-myButton2 = document.getElementById("myButton2");
 resultDiv = document.getElementById("result");
 
 
 
-myButton2.addEventListener("click", () => {
-    alert("Button 2 clicked!");
+document.addEventListener("DOMContentLoaded", function() {
     showData();
-    myButton2.disabled = true;
 });
 
 function showData() {
@@ -22,10 +19,14 @@ function showData() {
             imgContainer.className = "img-container";
             productContainer.appendChild(imgContainer);
             const img = document.createElement("img");
+            
             img.src = allProducts[i - 1].image;
             img.alt = allProducts[i - 1].title;
             img.width = 100;
             imgContainer.appendChild(img);
+            
+
+            let titleContainer, priceContainer;
 
             titleContainer = document.createElement("div");
             titleContainer.className = "title-container";
@@ -37,7 +38,10 @@ function showData() {
             } else {
                 p.textContent = allProducts[i - 1].title;
             }
-            titleContainer.appendChild(p);
+            const link = document.createElement("a");
+            link.href = "product.html?id=" + allProducts[i - 1].id;
+            link.appendChild(p);
+            titleContainer.appendChild(link);
 
             priceContainer = document.createElement("div");
             priceContainer.className = "price-container";
@@ -46,6 +50,14 @@ function showData() {
             price.className = "product-price";
             price.textContent = `$${allProducts[i - 1].price}`;
             priceContainer.appendChild(price);
+
+            const buttonContainer = document.createElement("div");
+            buttonContainer.className = "button-container";
+            productContainer.appendChild(buttonContainer);
+            const button = document.createElement("button");
+            button.className = "add-to-cart";
+            button.textContent = "Add to Cart";
+            buttonContainer.appendChild(button);
         }
     });
 }

@@ -9,7 +9,7 @@ body {
     font-size: 18px;
     color: #333;
     margin-top: 10px;
-    padding: 15px;
+    text-align: center;
     width: 150px;
     height: 100px;
     
@@ -17,7 +17,7 @@ body {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #4155a5;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -40,8 +40,10 @@ button {
 .product-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     
-
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     
     padding: 15px;
     border: 1px solid #ccc;
@@ -52,7 +54,7 @@ button {
 
 
 .product-price {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     color: #1f3866;
     margin-top: 5px;
@@ -74,10 +76,12 @@ button {
     width: 100px;
     margin-top: 10px;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .title-container {
-    width: 100px;
+    width: 150px;
     margin-top: 10px;
     text-align: center;
 }
