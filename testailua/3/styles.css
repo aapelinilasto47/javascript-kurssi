@@ -6,6 +6,29 @@ body {
     overflow-x: hidden;
 }
 
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#search-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #6f6f6f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 #footer-text {
     text-align: center;
     padding: 20px;
