@@ -5,6 +5,7 @@ resultDiv = document.getElementById("result");
 
 document.addEventListener("DOMContentLoaded", function() {
     showData();
+    
 });
 
 function showData() {
@@ -100,7 +101,7 @@ function searchProducts(query) {
             console.error('Error fetching JSON:', error);
         });
 }
-document.getElementById("search-button").addEventListener("click", function() {
+document.getElementById("search-input").addEventListener("keypress", function() {
     const query = document.getElementById("search-input").value;
     searchProducts(query).then(filteredProducts => {
         resultDiv.innerHTML = "";
@@ -108,6 +109,7 @@ document.getElementById("search-button").addEventListener("click", function() {
             filteredProducts.forEach(product => {
                 const productContainer = document.createElement("div");
                 productContainer.className = "product-container";
+                productContainer.id = `product-${product.id}`;
                 resultDiv.appendChild(productContainer);
                 const imgContainer = document.createElement("div");
                 imgContainer.className = "img-container";
@@ -146,18 +148,27 @@ document.getElementById("search-button").addEventListener("click", function() {
 
                 const button = document.createElement("button");
                 button.className = "add-to-cart";
+                button.id = "add-to-cart-" + product.id;
                 button.textContent = "Add to Cart";
+                button.setAttribute("onclick", "alert('Added product " + product.id + " to cart')");
                 buttonContainer.appendChild(button);
+
 
                 const button2 = document.createElement("button");
                 button2.className = "view-details";
+                button2.id = "view-details-" + product.id;
                 button2.textContent = "View Details";
+                button2.addEventListener("click", function() {
+                    alert(`View details for product ${product.id}`);
+                });
                 buttonContainer.appendChild(button2);
+                
+
+
             });
         } else {
             resultDiv.innerHTML = "<p>No products found.</p>";
         }
     });
 });
-
 
