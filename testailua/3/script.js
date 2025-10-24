@@ -1,19 +1,22 @@
 
 resultDiv = document.getElementById("result");
 const searchContainer = document.getElementById("search-container");
-
+const wishlist = [];
 
 document.addEventListener("DOMContentLoaded", function() {
     showData();
+
+    wishlist = [];
+
     
 });
 
 function showData() {
     fetchProduct().then(allProducts => {
         resultDiv.innerHTML = "";
-        
-        
-        for (let i = 1; i <= 20; i++) {
+
+
+        for (let i = 0; i < allProducts.length && i < 20; i++) {
 
             presentProducts(allProducts[i]);
 
@@ -122,7 +125,8 @@ function presentProducts(product) {
         button.id = "add-to-wishlist-" + product.id;
         button.textContent = "Add to Wishlist";
         button.addEventListener("click", function() {
-            alert(`Added product ${product.id} to wishlist`);
+            wishlist.push(product);
+            console.log("Wishlist:", wishlist);
 
         });
         buttonContainer.appendChild(button);
@@ -133,7 +137,6 @@ function presentProducts(product) {
         button2.id = "view-details-" + product.id;
         button2.textContent = "View Details";
         button2.addEventListener("click", function() {
-            alert(`View details for product ${product.id}`);
             resultDiv.innerHTML = "";
             presentProductDetails(product);
         });
