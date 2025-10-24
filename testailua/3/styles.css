@@ -7,16 +7,98 @@ body {
 }
 
 .detail-container {
-    width: 80%;
+    width: 50%;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.detail-img-container {
+    width: 350px;
+    height: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
     align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.detail-text-container {
+    width: 60%;
+    height: auto;
+    margin-left: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.detail-button-container {
+    margin-top: 15px;
+    display: flex;
+    gap: 40px;
+}
+
+.detail-add-to-wishlist {
+    
+    background-color: #af528d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    
+}
+
+#open-wishlist-button {
+    background-color: #519638;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+.back-button {
+    background-color: #888;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.detail-product-price {
+    font-size: 40px;
+    font-weight: bold;
+    color: #1f3866;
+    margin-top: 5px;
     text-align: center;
+}
+
+.detail-price-container {
+    width: 60%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    
+    
 }
 
 .search-container {
@@ -78,8 +160,8 @@ h1 {
     
 }
 
-.add-to-cart {
-    background-color: #4155a5;
+.add-to-wishlist {
+    background-color: #98437c;
     color: white;
     border: none;
     border-radius: 5px;

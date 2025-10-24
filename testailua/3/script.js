@@ -1,6 +1,6 @@
 
 resultDiv = document.getElementById("result");
-
+const searchContainer = document.getElementById("search-container");
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function showData() {
     fetchProduct().then(allProducts => {
         resultDiv.innerHTML = "";
+        
+        
         for (let i = 1; i <= 20; i++) {
 
             presentProducts(allProducts[i]);
@@ -75,6 +77,7 @@ document.getElementById("search-button").addEventListener("click", function() {
 });
 
 function presentProducts(product) {
+    
     const productContainer = document.createElement("div");
         productContainer.className = "product-container";
         productContainer.id = "product-" + product.id;
@@ -115,11 +118,11 @@ function presentProducts(product) {
         productContainer.appendChild(buttonContainer);
 
         const button = document.createElement("button");
-        button.className = "add-to-cart";
-        button.id = "add-to-cart-" + product.id;
-        button.textContent = "Add to Cart";
+        button.className = "add-to-wishlist";
+        button.id = "add-to-wishlist-" + product.id;
+        button.textContent = "Add to Wishlist";
         button.addEventListener("click", function() {
-            alert(`Added product ${product.id} to cart`);
+            alert(`Added product ${product.id} to wishlist`);
 
         });
         buttonContainer.appendChild(button);
@@ -143,30 +146,54 @@ function presentProductDetails(product) {
     detailContainer.id = "detail-" + product.id;
     resultDiv.appendChild(detailContainer);
 
+    const imgContainer = document.createElement("div");
+    imgContainer.className = "detail-img-container";
+    detailContainer.appendChild(imgContainer);
     const img = document.createElement("img");
     img.src = product.image;
     img.alt = product.title;
     img.width = 200;
-    detailContainer.appendChild(img);
+    imgContainer.appendChild(img);
 
+    const textContainer = document.createElement("div");
+    textContainer.className = "detail-text-container";
+    detailContainer.appendChild(textContainer);
     const title = document.createElement("h2");
     title.textContent = product.title;
-    detailContainer.appendChild(title);
+    title.className = "product-title";
+    textContainer.appendChild(title);
 
     const description = document.createElement("p");
+    description.className = "product-description";
     description.textContent = product.description;
-    detailContainer.appendChild(description);
+    textContainer.appendChild(description);
 
+    const priceContainer = document.createElement("div");
+    priceContainer.className = "detail-price-container";
+    textContainer.appendChild(priceContainer);
     const price = document.createElement("p");
+    price.className = "detail-product-price";
     price.textContent = `$${product.price}`;
-    detailContainer.appendChild(price);
+    priceContainer.appendChild(price);
+
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "detail-button-container";
+    textContainer.appendChild(buttonContainer);
 
     const backButton = document.createElement("button");
     backButton.textContent = "Back to Products";
+    backButton.className = "back-button";
    backButton.addEventListener("click", function() {
        resultDiv.innerHTML = "";
+       
        showData();
        
    });
-   detailContainer.appendChild(backButton);
+   buttonContainer.appendChild(backButton);
+
+   const wishlistButton = document.createElement("button");
+    wishlistButton.className = "detail-add-to-wishlist";
+    wishlistButton.id = "add-to-wishlist-" + product.id;
+    wishlistButton.textContent = "Add to Wishlist";
+    buttonContainer.appendChild(wishlistButton);
 }
