@@ -6,6 +6,100 @@ body {
     overflow-x: hidden;
 }
 
+.wishlist-img-container {
+    width: 200px;
+    height: 200px;
+    border: #888 1px solid;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+.wishlist-product-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+    
+    border: 1px solid #ccc;
+    
+    background-color: #fff;
+    padding: 15px;
+    
+    
+    width: 80%;
+}
+
+.wishlist-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 10px;
+    padding-left: 30px;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.wishlist-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 50%;
+    padding: 20px;
+}
+
+.wishlist-product-title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #111d34;
+    margin-bottom: 10px;
+}
+
+.wishlist-price-container {
+    font-size: 45px;
+    font-weight: bold;
+    color: #1f3866;
+    margin-top: 5px;
+    display: flex;    
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+    flex-shrink: 0;
+
+}
+
+
+.remove-from-wishlist {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.view-wishlist-details {
+    background-color: #4f4f4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
 .detail-container {
     width: 50%;
     margin: 20px auto;
@@ -68,6 +162,25 @@ body {
     cursor: pointer;
     font-size: 16px;
     margin-left: 20px;
+}
+
+.empty-wishlist-container {
+    text-align: center;
+    margin-top: 50px;
+    align-items: center;
+}
+
+.back-button-empty {
+    background-color: #868686;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+
 }
 
 .back-button {
@@ -208,7 +321,7 @@ h1 {
 
 
 .product-price {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
     color: #1f3866;
     margin-top: 5px;

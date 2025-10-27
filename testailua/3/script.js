@@ -1,7 +1,8 @@
 
 resultDiv = document.getElementById("result");
 const searchContainer = document.getElementById("search-container");
-const wishlist = [];
+const openWishlistButton = document.getElementById("open-wishlist-button");
+let wishlist = [];
 
 document.addEventListener("DOMContentLoaded", function() {
     showData();
@@ -141,7 +142,12 @@ function presentProducts(product) {
             presentProductDetails(product);
         });
         buttonContainer.appendChild(button2);
-}
+
+        openWishlistButton.addEventListener("click", function() {
+            resultDiv.innerHTML = "";
+            showWishlist();
+        });
+    }
 
 function presentProductDetails(product) {
     const detailContainer = document.createElement("div");
@@ -198,5 +204,101 @@ function presentProductDetails(product) {
     wishlistButton.className = "detail-add-to-wishlist";
     wishlistButton.id = "add-to-wishlist-" + product.id;
     wishlistButton.textContent = "Add to Wishlist";
+
+    wishlistButton.addEventListener("click", function() {
+        wishlist.push(product);
+        console.log("Wishlist:", wishlist);
+    });
     buttonContainer.appendChild(wishlistButton);
 }
+
+function showWishlist() {
+    if (wishlist.length === 0) {
+        resultDiv.innerHTML = "";
+
+        const emptyContainer = document.createElement("div");
+        emptyContainer.className = "empty-wishlist-container";
+        resultDiv.appendChild(emptyContainer);
+        const emptyMessage = document.createElement("p");
+        emptyMessage.textContent = "Your wishlist is empty.";
+        emptyMessage.className = "empty-wishlist-message";
+        emptyContainer.appendChild(emptyMessage);
+
+        const backButton = document.createElement("button");
+        backButton.textContent = "Back to Products";
+        backButton.className = "back-button-empty";
+        backButton.addEventListener("click", function() {
+            resultDiv.innerHTML = "";
+            showData();
+        });
+        emptyContainer.appendChild(backButton);
+    } else {
+        wishlist.forEach(product => {
+            const productDiv = document.createElement("div");
+            productDiv.className = "wishlist-product-container";
+            resultDiv.appendChild(productDiv);
+
+            const imgContainer = document.createElement("div");
+            imgContainer.className = "wishlist-img-container";
+            productDiv.appendChild(imgContainer);
+
+            const img = document.createElement("img");
+            img.src = product.image;
+            img.alt = product.title;
+            img.style.width = "100%";
+            img.style.height = "100%";
+            img.style.objectFit = "contain";
+            imgContainer.appendChild(img);
+
+            const textContainer = document.createElement("div");
+            textContainer.className = "wishlist-text-container";
+            
+            productDiv.appendChild(textContainer);
+            const title = document.createElement("h3");
+            title.className = "wishlist-product-title";
+            title.textContent = product.title;
+            textContainer.appendChild(title);
+
+            const description = document.createElement("p");
+            description.className = "wishlist-product-description";
+            description.textContent = product.description;
+            textContainer.appendChild(description);
+
+            const priceContainer = document.createElement("div");
+            priceContainer.className = "wishlist-price-container";
+            productDiv.appendChild(priceContainer);
+
+            const price = document.createElement("p");
+            price.className = "wishlist-product-price";
+            price.textContent = `$${product.price}`;
+            priceContainer.appendChild(price);
+
+            const buttonContainer = document.createElement("div");
+            buttonContainer.className = "wishlist-button-container";
+            productDiv.appendChild(buttonContainer);
+
+            const detailsButton = document.createElement("button");
+            detailsButton.textContent = "View Details";
+            detailsButton.className = "view-wishlist-details";
+            detailsButton.addEventListener("click", function() {
+                resultDiv.innerHTML = "";
+                presentProductDetails(product);
+            });
+            buttonContainer.appendChild(detailsButton);
+
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            removeButton.className = "remove-from-wishlist";
+            removeButton.addEventListener("click", function() { 
+                const index = wishlist.indexOf(product);
+                if (index > -1) {
+                    wishlist.splice(index, 1);
+                }
+                resultDiv.innerHTML = "";
+                showWishlist();
+            });
+            buttonContainer.appendChild(removeButton);
+
+
+        });
+    }}
